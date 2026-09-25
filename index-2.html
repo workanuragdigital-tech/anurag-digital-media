@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anurag Digital Media — connecting artists to the world." />
+  <title>Anurag Digital Media | Artist Verification & Distribution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070707; --card:#111111; --card2:#151515; --gold:#f5b51b;
+      --gold2:#ffcf4a; --text:#f7f7f7; --muted:#a7a7a7; --line:#272727;
+    }
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(7,7,7,.88);backdrop-filter:blur(14px);border-bottom:1px solid #1d1d1d}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{width:52px;height:52px;object-fit:contain;border-radius:12px}
+    .brand span{font-size:17px;letter-spacing:.5px}
+    .brand small{display:block;color:var(--gold);font-size:9px;letter-spacing:2px}
+    .links{display:flex;gap:26px;align-items:center}
+    .links a{color:#ddd;font-size:14px}.links a:hover{color:var(--gold2)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border-radius:999px;border:1px solid var(--gold);font-weight:700;font-size:14px;transition:.2s}
+    .btn.gold{background:linear-gradient(135deg,#ffd65a,#e79a00);color:#090909;border:0}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px #f5b51b25}
+    .menu{display:none;background:none;border:1px solid #333;color:#fff;border-radius:10px;padding:9px 11px}
+    .hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;padding:70px 0;position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:#f5b51b12;filter:blur(80px);right:-180px;top:-100px}
+    .eyebrow{color:var(--gold2);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+    h1{font-size:clamp(42px,6vw,76px);line-height:1.02;margin:15px 0 20px;letter-spacing:-3px}
+    h1 span{color:var(--gold)}
+    .hero p{color:#bcbcbc;max-width:620px;font-size:17px}
+    .actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:28px}
+    .hero-logo{display:flex;justify-content:center;position:relative}
+    .logo-card{width:min(450px,100%);padding:25px;border:1px solid #2b2b2b;border-radius:30px;background:linear-gradient(145deg,#121212,#080808);box-shadow:0 30px 90px #000}
+    .logo-card img{width:100%;display:block;border-radius:20px}
+    section{padding:85px 0}
+    .section-head{text-align:center;margin-bottom:40px}.section-head h2{font-size:36px;margin:7px 0}.section-head p{color:var(--muted);max-width:650px;margin:auto}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(145deg,#141414,#0d0d0d);border:1px solid var(--line);border-radius:20px;padding:25px}
+    .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#f5b51b16;color:var(--gold2);font-size:22px;margin-bottom:15px}
+    .card h3{margin:5px 0 8px}.card p{color:#999;margin:0;font-size:14px}
+    .artist{display:flex;align-items:center;gap:15px}.avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffd65a,#9d6200);color:#111;font-weight:900;font-size:20px}
+    .verified{display:inline-flex;align-items:center;gap:5px;color:#68d391;font-size:11px;font-weight:800;margin-top:3px}
+    .release{overflow:hidden;padding:0}.cover{height:180px;background:linear-gradient(135deg,#262626,#0b0b0b);display:grid;place-items:center;font-size:50px;color:var(--gold)}
+    .release-body{padding:20px}.release-body p{color:#888;font-size:13px}
+    .cta{border:1px solid #3a2c0c;background:radial-gradient(circle at 80% 30%,#f5b51b1a,transparent 35%),#0e0e0e;border-radius:28px;padding:55px;text-align:center}
+    .form-wrap{max-width:760px;margin:auto;background:#101010;border:1px solid var(--line);border-radius:24px;padding:28px}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field.full{grid-column:1/-1}
+    label{display:block;font-size:12px;color:#aaa;margin-bottom:7px}
+    input,textarea,select{width:100%;padding:13px 14px;border-radius:11px;border:1px solid #303030;background:#080808;color:#fff;outline:none}
+    input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+    textarea{min-height:120px;resize:vertical}
+    footer{border-top:1px solid #1d1d1d;padding:35px 0;color:#777;font-size:13px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .toast{position:fixed;right:20px;bottom:20px;background:#171717;border:1px solid #444;padding:14px 17px;border-radius:12px;display:none;z-index:50}
+    @media(max-width:800px){
+      .links{display:none;position:absolute;left:4%;right:4%;top:70px;background:#0d0d0d;border:1px solid #292929;border-radius:15px;padding:18px;flex-direction:column;align-items:flex-start}
+      .links.open{display:flex}.menu{display:block}.nav-cta{display:none}
+      .hero{grid-template-columns:1fr;padding-top:50px}.hero-logo{order:-1}.logo-card{max-width:330px}
+      .grid{grid-template-columns:1fr}.hero p{font-size:15px}
+      form{grid-template-columns:1fr}.field.full{grid-column:auto}.cta{padding:38px 22px}
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#home">
+        <img src="assets/anurag-logo.png" alt="Anurag Digital Media logo">
+        <span>ANURAG<small>DIGITAL MEDIA</small></span>
+      </a>
+      <div class="links" id="links">
+        <a href="#home">Home</a><a href="#artists">Artists</a><a href="#releases">Releases</a>
+        <a href="#distribution">Distribution</a><a href="#contact">Contact</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="btn gold nav-cta" href="#verification">Artist Verification</a>
+        <button class="menu" onclick="toggleMenu()">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="container hero">
+    <div>
+      <div class="eyebrow">Independent Music • Digital Distribution</div>
+      <h1>Connect your music<br>to the <span>world.</span></h1>
+      <p>Anurag Digital Media helps artists build their presence, distribute releases and get verified with a professional digital identity.</p>
+      <div class="actions">
+        <a class="btn gold" href="#verification">Get Artist Verified →</a>
+        <a class="btn" href="#distribution">Explore Distribution</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <div class="logo-card"><img src="assets/anurag-logo.png" alt="Anurag Digital Media"></div>
+    </div>
+  </section>
+
+  <section id="artists">
+    <div class="container">
+      <div class="section-head"><div class="eyebrow">Artist Network</div><h2>Verified Artists</h2><p>Showcase your official artist identity and build trust with your audience.</p></div>
+      <div class="grid">
+        <div class="card artist"><div class="avatar">AD</div><div><h3>Artist Demo</h3><div class="verified">✓ VERIFIED ARTIST</div></div></div>
+        <div class="card artist"><div class="avatar">AM</div><div><h3>Artist Music</h3><div class="verified">✓ VERIFIED ARTIST</div></div></div>
+        <div class="card artist"><div class="avatar">AN</div><div><h3>New Artist</h3><div class="verified">✓ VERIFIED ARTIST</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="releases">
+    <div class="container">
+      <div class="section-head"><div class="eyebrow">Latest Music</div><h2>Releases</h2><p>Keep your latest songs, albums and projects visible in one professional space.</p></div>
+      <div class="grid">
+        <div class="card release"><div class="cover">▶</div><div class="release-body"><h3>Latest Release</h3><p>Single • Anurag Digital Media</p></div></div>
+        <div class="card release"><div class="cover">♫</div><div class="release-body"><h3>New Music</h3><p>Single • Coming Soon</p></div></div>
+        <div class="card release"><div class="cover">♪</div><div class="release-body"><h3>Featured Release</h3><p>Artist • Coming Soon</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="distribution">
+    <div class="container">
+      <div class="section-head"><div class="eyebrow">What We Do</div><h2>Distribution & Artist Services</h2><p>Simple digital tools for independent artists and music creators.</p></div>
+      <div class="grid">
+        <div class="card"><div class="icon">♫</div><h3>Music Distribution</h3><p>Prepare and distribute your releases across digital music platforms.</p></div>
+        <div class="card"><div class="icon">✓</div><h3>Artist Verification</h3><p>Submit your artist details and links for an official verification review.</p></div>
+        <div class="card"><div class="icon">◈</div><h3>Digital Presence</h3><p>Create a professional identity for your music, releases and audience.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="verification">
+    <div class="container">
+      <div class="section-head"><div class="eyebrow">Artist Verification</div><h2>Get Your Artist Profile Verified</h2><p>Fill in your details below. This demo form is ready to connect to your backend, email or database.</p></div>
+      <div class="form-wrap">
+        <form id="verifyForm">
+          <div class="field"><label>Full Name *</label><input required name="name" placeholder="Your name"></div>
+          <div class="field"><label>Artist Name *</label><input required name="artist" placeholder="Stage / artist name"></div>
+          <div class="field"><label>Mobile Number</label><input name="phone" placeholder="+91 XXXXX XXXXX"></div>
+          <div class="field"><label>Email *</label><input required type="email" name="email" placeholder="you@example.com"></div>
+          <div class="field full"><label>Artist / Social Profile Link</label><input name="profile" placeholder="Instagram, YouTube, Spotify, etc."></div>
+          <div class="field full"><label>Message</label><textarea name="message" placeholder="Tell us about your artist profile..."></textarea></div>
+          <div class="field full"><button class="btn gold" type="submit" style="width:100%">Submit Verification Request</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="cta">
+        <div class="eyebrow">Ready to Grow?</div>
+        <h2>Let’s build your digital music journey.</h2>
+        <p style="color:#999">For distribution, artist verification or partnership enquiries, contact Anurag Digital Media.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn gold" href="#verification">Start Verification</a>
+          <a class="btn" href="mailto:contact@anuragdigitalmedia.com">Email Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Anurag Digital Media. All rights reserved.</div>
+    <div>Connecting Artists to the World.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Verification request captured in this demo.</div>
+<script>
+  function toggleMenu(){ document.getElementById('links').classList.toggle('open'); }
+  document.querySelectorAll('.links a').forEach(a => a.addEventListener('click',()=>document.getElementById('links').classList.remove('open')));
+  document.getElementById('verifyForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('toast').style.display='block';
+    setTimeout(()=>document.getElementById('toast').style.display='none',3000);
+    this.reset();
+  });
+</script>
+</body>
+</html>
