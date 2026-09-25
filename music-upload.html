@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Music Upload | Anurag Digital Media</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #ffffff;
+    }
+
+    header {
+      padding: 20px 7%;
+      border-bottom: 1px solid #29334f;
+      background: #0d1427;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: #7c5cff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 18px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .heading h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .heading p {
+      color: #aeb8cc;
+    }
+
+    .card {
+      background: #121a2d;
+      border: 1px solid #293653;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    }
+
+    .section-title {
+      margin-top: 28px;
+      margin-bottom: 18px;
+      color: #9d8aff;
+      font-size: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      color: #c7d0e3;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #3a4665;
+      background: #0b1223;
+      color: white;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #7c5cff;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .upload-box {
+      padding: 20px;
+      border: 1px dashed #566383;
+      border-radius: 12px;
+      background: #0d1528;
+    }
+
+    .copyright {
+      padding: 16px;
+      margin-top: 22px;
+      background: #18233b;
+      border-radius: 12px;
+      line-height: 1.6;
+    }
+
+    .copyright input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: 0;
+      border-radius: 11px;
+      background: #7c5cff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #163b2b;
+      color: #8ff0b5;
+    }
+
+    .note {
+      color: #929db5;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    @media(max-width:700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .heading h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    Anurag <span>Digital Media</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="heading">
+    <h1>Music Release Submission</h1>
+    <p>Submit your song, EP or album to Anurag Digital Media.</p>
+  </div>
+
+  <div class="card">
+
+    <form id="musicForm">
+
+      <!-- RELEASE DETAILS -->
+
+      <h2 class="section-title">1. Release Details</h2>
+
+      <div class="grid">
+
+        <div>
+          <label>Release Type *</label>
+          <select name="releaseType" required>
+            <option value="">Select Release Type</option>
+            <option>Single</option>
+            <option>EP</option>
+            <option>Album</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Song / Album Title *</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Artist Name *</label>
+          <input
+            type="text"
+            name="artist"
+            placeholder="Artist / Stage Name"
+            required
+          >
+        </div>
+
+        <div>
+          <label>Language *</label>
+          <input
+            type="text"
+            name="language"
+            placeholder="Hindi / Bhojpuri / English..."
+            required
+          >
+        </div>
+
+        <div>
+          <label>Genre *</label>
+          <select name="genre" required>
+            <option value="">Select Genre</option>
+            <option>Pop</option>
+            <option>Hip-Hop</option>
+            <option>Rap</option>
+            <option>Bollywood</option>
+            <option>Bhojpuri</option>
+            <option>Folk</option>
+            <option>Devotional</option>
+            <option>Romantic</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Release Date *</label>
+          <input
+            type="date"
+            name="releaseDate"
+            required
+          >
+        </div>
+
+        <div>
+          <label>ISRC</label>
+          <input
+            type="text"
+            name="isrc"
+            placeholder="Optional"
+          >
+        </div>
+
+        <div>
+          <label>UPC / EAN</label>
+          <input
+            type="text"
+            name="upc"
+            placeholder="Optional"
+          >
+        </div>
+
+        <div>
+          <label>Content Type</label>
+          <select name="contentType">
+            <option>Clean</option>
+            <option>Explicit</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <!-- AUDIO -->
+
+      <h2 class="section-title">2. Audio Upload</h2>
+
+      <div class="upload-box">
+
+        <label>Master Audio File *</label>
+
+        <input
+          type="file"
+          name="audio"
+          accept=".mp3,.wav,audio/mpeg,audio/wav"
+          required
+        >
+
+        <p class="note">
+          Accepted formats: MP3 or WAV.
+        </p>
+
+      </div>
+
+
+      <!-- COVER -->
+
+      <h2 class="section-title">3. Cover Artwork</h2>
+
+      <div class="upload-box">
+
+        <label>Cover Artwork *</label>
+
+        <input
+          type="file"
+          name="cover"
+          accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+          required
+        >
+
+        <p class="note">
+          Accepted formats: JPG, JPEG or PNG.
+        </p>
+
+      </div>
+
+
+      <!-- CREDITS -->
+
+      <h2 class="section-title">4. Music Credits</h2>
+
+      <div class="grid">
+
+        <div>
+          <label>Singer / Vocalist</label>
+          <input
+            type="text"
+            name="singer"
+            placeholder="Singer name"
+          >
+        </div>
+
+        <div>
+          <label>Composer</label>
+          <input
+            type="text"
+            name="composer"
+            placeholder="Composer name"
+          >
+        </div>
+
+        <div>
+          <label>Lyricist</label>
+          <input
+            type="text"
+            name="lyricist"
+            placeholder="Lyricist name"
+          >
+        </div>
+
+        <div>
+          <label>Music Producer</label>
+          <input
+            type="text"
+            name="producer"
+            placeholder="Producer name"
+          >
+        </div>
+
+        <div>
+          <label>Featuring Artist</label>
+          <input
+            type="text"
+            name="featuring"
+            placeholder="Optional"
+          >
+        </div>
+
+        <div>
+          <label>Label Name</label>
+          <input
+            type="text"
+            name="label"
+            value="Anurag Digital Media"
+          >
+        </div>
+
+        <div class="full">
+          <label>Additional Credits / Notes</label>
+
+          <textarea
+            name="notes"
+            placeholder="Enter additional credits..."
+          ></textarea>
+        </div>
+
+      </div>
+
+
+      <!-- COPYRIGHT -->
+
+      <h2 class="section-title">5. Copyright Declaration</h2>
+
+      <div class="copyright">
+
+        <label>
+          <input
+            type="checkbox"
+            name="copyright"
+            required
+          >
+
+          I confirm that I own or have obtained the necessary rights,
+          permissions and licenses for this music, audio, artwork and
+          submitted information. I authorize Anurag Digital Media to
+          review this release for distribution.
+        </label>
+
+      </div>
+
+
+      <button type="submit">
+        Submit Music Release
+      </button>
+
+      <div id="message">
+        ✓ Release form completed successfully.
+        Your submission is ready for the next review step.
+      </div>
+
+    </form>
+
+    <p class="note">
+      Anurag Digital Media will review submitted release information
+      before distribution. Do not submit copyrighted material without
+      the necessary rights or authorization.
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+document
+  .getElementById("musicForm")
+  .addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const audio =
+      document.querySelector('input[name="audio"]').files[0];
+
+    const cover =
+      document.querySelector('input[name="cover"]').files[0];
+
+    if (!audio || !cover) {
+      alert("Please select both audio and cover artwork.");
+      return;
+    }
+
+    const audioOK =
+      /\.(mp3|wav)$/i.test(audio.name);
+
+    const coverOK =
+      /\.(jpg|jpeg|png)$/i.test(cover.name);
+
+    if (!audioOK) {
+      alert("Audio must be MP3 or WAV.");
+      return;
+    }
+
+    if (!coverOK) {
+      alert("Cover must be JPG, JPEG or PNG.");
+      return;
+    }
+
+    document.getElementById("message").style.display = "block";
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
