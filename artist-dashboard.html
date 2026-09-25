@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Artist Dashboard | Anurag Digital Media</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #090909;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    header {
+      background: #111;
+      border-bottom: 1px solid #292929;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand h1 {
+      font-size: 22px;
+    }
+
+    .brand span {
+      color: #ff1744;
+    }
+
+    .brand p {
+      color: #888;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .home-btn {
+      color: white;
+      text-decoration: none;
+      border: 1px solid #444;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .home-btn:hover {
+      border-color: #ff1744;
+      color: #ff1744;
+    }
+
+    /* LAYOUT */
+
+    .dashboard {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      font-size: 28px;
+      margin-bottom: 7px;
+    }
+
+    .welcome p {
+      color: #999;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #121212;
+      border: 1px solid #292929;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .stat-card h3 {
+      font-size: 25px;
+      color: #ff1744;
+      margin-bottom: 7px;
+    }
+
+    .stat-card p {
+      color: #999;
+      font-size: 13px;
+    }
+
+    /* MAIN GRID */
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 25px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* FORM */
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #ddd;
+      font-size: 13px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      background: #1b1b1b;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 9px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #ff1744;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* UPLOAD */
+
+    .upload-box {
+      border: 1px dashed #555;
+      border-radius: 12px;
+      padding: 25px 15px;
+      text-align: center;
+      background: #151515;
+    }
+
+    .upload-box .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .upload-box p {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .upload-box input {
+      border: none;
+      background: transparent;
+    }
+
+    /* BUTTON */
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #ff1744;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+      background: #e9143d;
+    }
+
+    /* STATUS */
+
+    .release {
+      background: #181818;
+      border: 1px solid #292929;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .release-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .release-info {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+    }
+
+    .pending {
+      background: #332c13;
+      color: #f4d35e;
+    }
+
+    .approved {
+      background: #15301d;
+      color: #65df88;
+    }
+
+    .correction {
+      background: #35191c;
+      color: #ff7184;
+    }
+
+    /* QUICK LINKS */
+
+    .quick-links a {
+      display: block;
+      color: #ddd;
+      text-decoration: none;
+      background: #181818;
+      border: 1px solid #292929;
+      padding: 13px;
+      border-radius: 9px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .quick-links a:hover {
+      border-color: #ff1744;
+      color: #ff1744;
+    }
+
+    /* MESSAGE */
+
+    #successMessage {
+      display: none;
+      background: #14301d;
+      color: #6ee78c;
+      border: 1px solid #275d36;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    footer a {
+      color: #ff1744;
+      text-decoration: none;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      header {
+        padding: 15px;
+      }
+
+      .dashboard {
+        padding: 22px 15px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .welcome h2 {
+        font-size: 23px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="brand">
+      <h1>Anurag <span>Digital Media</span></h1>
+      <p>Artist Dashboard</p>
+    </div>
+
+    <a href="index.html" class="home-btn">
+      🏠 Homepage
+    </a>
+
+  </header>
+
+
+  <!-- DASHBOARD -->
+
+  <main class="dashboard">
+
+    <div class="welcome">
+
+      <h2>🎤 Artist Dashboard</h2>
+
+      <p>
+        अपना music release submit करें और release status देखें।
+      </p>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+      <div class="stat-card">
+        <h3>0</h3>
+        <p>Total Releases</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>0</h3>
+        <p>Pending</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>0</h3>
+        <p>Approved</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>0</h3>
+        <p>Live Releases</p>
+      </div>
+
+    </section>
+
+
+    <div id="successMessage">
+      ✅ आपका release submission सफलतापूर्वक तैयार हो गया है।
+    </div>
+
+
+    <div class="main-grid">
+
+
+      <!-- LEFT -->
+
+      <div>
+
+        <!-- MUSIC UPLOAD -->
+
+        <div class="card">
+
+          <h3>🎵 नया Music Upload करें</h3>
+
+          <form id="releaseForm">
+
+
+            <div class="form-group">
+
+              <label>Release Type</label>
+
+              <select required>
+
+                <option value="">Select करें</option>
+                <option>Single</option>
+                <option>EP</option>
+                <option>Album</option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>Song / Album Name</label>
+
+              <input
+                type="text"
+                placeholder="Song या Album का नाम"
+                required
+              >
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="form-group">
+
+                <label>Artist Name</label>
+
+                <input
+                  type="text"
+                  placeholder="Artist Name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>Language</label>
+
+                <input
+                  type="text"
+                  placeholder="Hindi, Bhojpuri, English..."
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="form-group">
+
+                <label>Genre</label>
+
+                <select required>
+
+                  <option value="">Genre चुनें</option>
+                  <option>Pop</option>
+                  <option>Bollywood</option>
+                  <option>Hip Hop</option>
+                  <option>Devotional</option>
+                  <option>Folk</option>
+                  <option>Regional</option>
+                  <option>Other</option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>Release Date</label>
+
+                <input
+                  type="date"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- AUDIO -->
+
+            <div class="form-group">
+
+              <label>🎧 Audio File</label>
+
+              <div class="upload-box">
+
+                <div class="icon">🎵</div>
+
+                <p>
+                  MP3 या WAV file upload करें
+                </p>
+
+                <input
+                  type="file"
+                  accept=".mp3,.wav,audio/mpeg,audio/wav"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- COVER -->
+
+            <div class="form-group">
+
+              <label>🖼️ Cover Artwork</label>
+
+              <div class="upload-box">
+
+                <div class="icon">🖼️</div>
+
+                <p>
+                  JPG, JPEG या PNG artwork upload करें
+                </p>
+
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- CREDITS -->
+
+            <h3 style="margin-top:25px;">
+              👥 Music Credits
+            </h3>
+
+
+            <div class="row">
+
+              <div class="form-group">
+
+                <label>Singer / Vocalist</label>
+
+                <input
+                  type="text"
+                  placeholder="Singer Name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>Composer</label>
+
+                <input
+                  type="text"
+                  placeholder="Composer Name"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="form-group">
+
+                <label>Lyricist</label>
+
+                <input
+                  type="text"
+                  placeholder="Lyricist Name"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>Music Producer</label>
+
+                <input
+                  type="text"
+                  placeholder="Producer Name"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>Additional Credits</label>
+
+              <textarea
+                placeholder="Featuring Artist, Mix/Master, etc."
+              ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>Copyright Declaration</label>
+
+              <textarea
+                placeholder="मैं घोषित करता/करती हूँ कि इस release के लिए मेरे पास आवश्यक अधिकार/अनुमतियाँ हैं।"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="submit-btn"
+            >
+              🚀 Release Submit करें
+            </button>
+
+
+          </form>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+
+      <div>
+
+        <!-- RELEASE STATUS -->
+
+        <div class="card">
+
+          <h3>📊 Release Status</h3>
+
+
+          <div class="release">
+
+            <div class="release-title">
+              अभी कोई release नहीं
+            </div>
+
+            <div class="release-info">
+              आपका submitted music यहाँ दिखाई देगा।
+            </div>
+
+            <span class="status pending">
+              Pending Review
+            </span>
+
+          </div>
+
+
+          <div class="release">
+
+            <div class="release-title">
+              QC / Approval
+            </div>
+
+            <div class="release-info">
+              Anurag Digital Media team release की जाँच करेगी।
+            </div>
+
+            <span class="status approved">
+              QC Process
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="card">
+
+          <h3>⚡ Quick Links</h3>
+
+          <div class="quick-links">
+
+            <a href="artist-register.html">
+              👤 Artist Registration
+            </a>
+
+            <a href="artist-login.html">
+              🔐 Artist Login
+            </a>
+
+            <a href="index.html">
+              🏠 Homepage
+            </a>
+
+            <a href="mailto:workanuragdigital@gmail.com?subject=Artist Support">
+              📩 Artist Support
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- DISTRIBUTION -->
+
+        <div class="card">
+
+          <h3>🌍 Distribution</h3>
+
+          <p style="color:#999; line-height:1.6; font-size:14px;">
+            आपका approved music future में
+            streaming platforms और digital stores
+            पर distribute किया जा सकेगा।
+          </p>
+
+          <br>
+
+          <p style="color:#777; font-size:12px;">
+            Distribution status approval के बाद update किया जाएगा।
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    © 2026 Anurag Digital Media
+
+    <br><br>
+
+    <a href="index.html">
+      Homepage
+    </a>
+
+  </footer>
+
+
+  <script>
+
+    document
+      .getElementById("releaseForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const audio =
+          this.querySelector('input[type="file"][accept*="mp3"]');
+
+        const files = this.querySelectorAll('input[type="file"]');
+
+        const audioFile = files[0].files[0];
+        const coverFile = files[1].files[0];
+
+        if (!audioFile || !coverFile) {
+          alert("कृपया Audio और Cover Artwork दोनों upload करें।");
+          return;
+        }
+
+        const audioName =
+          audioFile.name.toLowerCase();
+
+        const coverName =
+          coverFile.name.toLowerCase();
+
+        const validAudio =
+          audioName.endsWith(".mp3") ||
+          audioName.endsWith(".wav");
+
+        const validCover =
+          coverName.endsWith(".jpg") ||
+          coverName.endsWith(".jpeg") ||
+          coverName.endsWith(".png");
+
+        if (!validAudio) {
+          alert("कृपया MP3 या WAV audio file upload करें।");
+          return;
+        }
+
+        if (!validCover) {
+          alert("कृपया JPG, JPEG या PNG cover artwork upload करें।");
+          return;
+        }
+
+        document
+          .getElementById("successMessage")
+          .style.display = "block";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+        this.reset();
+
+      });
+
+  </script>
+
+</body>
+    </html>
